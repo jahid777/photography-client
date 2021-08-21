@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { useState } from "react";
+import { ServiceContext } from "../../App";
 import icon1 from "../../Image/1.png";
 import icon2 from "../../Image/2.jpg";
 import icon3 from "../../Image/3.jpg";
@@ -40,13 +42,24 @@ export const allService = [
 // Product Photography Clothing Photography Fashion Model Photography
 // Editorial Photography Retouching Motion Product Video & GIF
 const Service = () => {
+  const [services, setServices] = useContext(ServiceContext);
+  useEffect(() => {
+    fetch("http://localhost:5000/getService")
+      .then((res) => res.json())
+      .then((result) => {
+        setServices(result);
+      });
+  }, [setServices]);
+
+  // console.log(services, "here");
+
   return (
     <div>
       <h2 className="text-center mt-5 mb-3">Our Service</h2>
 
       <div className="row card-deck">
-        {allService.map((serviceData) => (
-          <ServiceData key={serviceData.id} singleServiceData={serviceData}>
+        {services.map((serviceData) => (
+          <ServiceData key={serviceData._id} singleServiceData={serviceData}>
             {" "}
           </ServiceData>
         ))}

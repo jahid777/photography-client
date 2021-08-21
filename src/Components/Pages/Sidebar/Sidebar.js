@@ -19,7 +19,7 @@ const Sidebar = () => {
             <Link to="/order">Order</Link>
           </li>
         </h5>
-        <h5>
+        {/* <h5>
           <li className="mt-4">
             <img
               style={{ height: "20px" }}
@@ -29,19 +29,19 @@ const Sidebar = () => {
             />
             <Link to="/orderList">Order List</Link>
           </li>
-        </h5>
-        <h5>
+        </h5> */}
+        {/* <h5>
           <li className="mt-4">
             <img src={reviewPic} className="mr-1" alt="" />
             <Link to="/review">Review</Link>
           </li>
-        </h5>
+        </h5> */}
 
         <div>
           <h5>
             <li className="mt-4">
               <img src={serviceListPic} className="mr-1" alt="" />
-              <Link to="/serviceList">Service List</Link>
+              <Link to="/serviceList">Order List</Link>
             </li>
           </h5>
           <h5>
@@ -55,12 +55,12 @@ const Sidebar = () => {
               <Link to="/addService">Add Service</Link>
             </li>
           </h5>
-          <h5>
+          {/* <h5>
             <li className="mt-4">
               <img src={makeAdminPic} className="mr-1" alt="" />
               <Link to="/makeAdmin">Make Admin</Link>
             </li>
-          </h5>
+          </h5> */}
         </div>
       </ul>
     </div>

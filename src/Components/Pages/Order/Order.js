@@ -1,16 +1,49 @@
-import React from "react";
-import uploadIcon from "../../../Image/upload.png";
+import React, { useContext, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { ServiceContext } from "../../../App";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Order.css";
 
 const Order = () => {
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const history = useHistory();
+  const [services, setServices] = useContext(ServiceContext);
+  const [orderInfo, setOrderInfo] = useState([]);
+  const { orderId } = useParams();
+  const serviceCard = services.find((sd) => sd._id == orderId);
+
+  const handleChange = (e) => {
+    const userInfo = { ...orderInfo };
+    //for undefined
+    if (userInfo.Service === undefined) {
+      userInfo["Service"] = serviceCard.title;
+    }
+    userInfo[e.target.name] = e.target.value;
+    setOrderInfo(userInfo);
+  };
+  const handleSubmit = () => {
+    fetch("http://localhost:5000/addOrder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          console.log(data);
+        }
+      });
+
+    alert("Order Send Successfully");
+    history.push("/");
+    //event.preventDefault();
+  };
 
   return (
     <main className="container-fluid">
       <div className="rightOption row">
-        <div className="col-md-3 container-fluid">
+        <div className="col-md-3 container-fluid mt-5">
           <Sidebar></Sidebar>
         </div>
         <form
@@ -21,7 +54,7 @@ const Order = () => {
           <div className="form-group">
             <input
               type="text"
-              name="inputName"
+              name="Name"
               placeholder="Your name / Company's name"
               id=""
               onChange={handleChange}
@@ -30,7 +63,7 @@ const Order = () => {
 
             <input
               type="email"
-              name="inputEmail"
+              name="Email"
               placeholder="Your email address"
               id=""
               onChange={handleChange}
@@ -39,8 +72,9 @@ const Order = () => {
 
             <input
               type="text"
-              name="selectedServiceName"
-              placeholder="selected Service Name "
+              name="Service"
+              // placeholder={serviceCard?.title}
+              defaultValue={serviceCard?.title}
               id=""
               onChange={handleChange}
               required
@@ -48,7 +82,7 @@ const Order = () => {
 
             <textarea
               type="text-area"
-              name="inputDescription"
+              name="Description"
               placeholder="Enter Description and phone number"
               id=""
               onChange={handleChange}
