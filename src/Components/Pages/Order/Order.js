@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { ServiceContext } from "../../../App";
+import Navbar from "../../Shared/Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Order.css";
 
@@ -21,7 +22,7 @@ const Order = () => {
     setOrderInfo(userInfo);
   };
   const handleSubmit = () => {
-    fetch("http://localhost:5000/addOrder", {
+    fetch("https://sleepy-retreat-41418.herokuapp.com/addOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,72 +42,75 @@ const Order = () => {
   };
 
   return (
-    <main className="container-fluid">
-      <div className="rightOption row">
-        <div className="col-md-3 container-fluid mt-5">
-          <Sidebar></Sidebar>
+    <main>
+      <Navbar />
+      <div className="container-fluid">
+        <div className="rightOption row">
+          <div className="col-md-3 container-fluid mt-5">
+            <Sidebar></Sidebar>
+          </div>
+          <form
+            onSubmit={handleSubmit}
+            className="order-form col-md-9 mt-5"
+            style={{ backgroundColor: "#F4F7FC" }}
+          >
+            <div className="form-group">
+              <input
+                type="text"
+                name="Name"
+                placeholder="Your name / Company's name"
+                id=""
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="email"
+                name="Email"
+                placeholder="Your email address"
+                id=""
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="text"
+                name="Service"
+                // placeholder={serviceCard?.title}
+                defaultValue={serviceCard?.title}
+                id=""
+                onChange={handleChange}
+                required
+              />
+
+              <textarea
+                type="text-area"
+                name="Description"
+                placeholder="Enter Description and phone number"
+                id=""
+                onChange={handleChange}
+                required
+                rows="4"
+                cols="28"
+                className="order-text-area"
+              />
+            </div>
+
+            <div className="" style={{ width: " 140px", marginTop: "-20px" }}>
+              <input
+                className="submit-button "
+                type="submit"
+                value="Send"
+                style={{
+                  background: "#111430",
+                  padding: " 0 60px 0 60px",
+                  width: "170px",
+                  color: "white",
+                }}
+              />
+            </div>
+          </form>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="order-form col-md-9 mt-5"
-          style={{ backgroundColor: "#F4F7FC" }}
-        >
-          <div className="form-group">
-            <input
-              type="text"
-              name="Name"
-              placeholder="Your name / Company's name"
-              id=""
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              type="email"
-              name="Email"
-              placeholder="Your email address"
-              id=""
-              onChange={handleChange}
-              required
-            />
-
-            <input
-              type="text"
-              name="Service"
-              // placeholder={serviceCard?.title}
-              defaultValue={serviceCard?.title}
-              id=""
-              onChange={handleChange}
-              required
-            />
-
-            <textarea
-              type="text-area"
-              name="Description"
-              placeholder="Enter Description and phone number"
-              id=""
-              onChange={handleChange}
-              required
-              rows="4"
-              cols="28"
-              className="order-text-area"
-            />
-          </div>
-
-          <div className="" style={{ width: " 140px", marginTop: "-20px" }}>
-            <input
-              className="submit-button "
-              type="submit"
-              value="Send"
-              style={{
-                background: "#111430",
-                padding: " 0 60px 0 60px",
-                width: "170px",
-                color: "white",
-              }}
-            />
-          </div>
-        </form>
       </div>
     </main>
   );

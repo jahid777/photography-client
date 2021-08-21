@@ -24,7 +24,7 @@ const ServiceData = ({ singleServiceData }) => {
         />
       ) : (
         <img
-          src={`http://localhost:5000/getService/${singleServiceData?.addImage?.img}`}
+          src={`https://sleepy-retreat-41418.herokuapp.com/getService/${singleServiceData?.addImage?.img}`}
           alt="..."
           style={{ height: "200px" }}
           class="card-img-top"

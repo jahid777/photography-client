@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import uploadImg from "../../../Image/upload.png";
 import { useHistory } from "react-router-dom";
+import Navbar from "../../Shared/Navbar/Navbar";
 
 const AddService = () => {
   const [addService, setAddService] = useState({});
@@ -26,7 +27,7 @@ const AddService = () => {
     formData.append("description", addService.serviceDescription);
     formData.append("price", addService.servicePrice);
 
-    fetch("http://localhost:5000/addService", {
+    fetch("https://sleepy-retreat-41418.herokuapp.com/addService", {
       method: "POST",
       body: formData,
     })
@@ -48,64 +49,68 @@ const AddService = () => {
   // console.log(file);
 
   return (
-    <section className="row mt-5">
-      <div className="col-md-3">
-        <Sidebar></Sidebar>
-      </div>
-      <div className="col-md-8" style={{ backgroundColor: "#F4F7FC" }}>
-        <form className="row mt-5" onSubmit={handleSubmit}>
-          <div className="col-md-6">
-            <label for="title">Service title</label>
-            <input
-              type="text"
-              id="title"
-              onBlur={handleChange}
-              name="serviceTitle"
-              class="form-control mb-3"
-            />
+    <main>
+      <Navbar />
+      <section className="row mt-5 container-fluid">
+        <div className="col-md-3">
+          <Sidebar></Sidebar>
+        </div>
+        <div className="col-md-8" style={{ backgroundColor: "#F4F7FC" }}>
+          <form className="row mt-5" onSubmit={handleSubmit}>
+            <div className="col-md-6">
+              <label for="title">Service title</label>
+              <input
+                type="text"
+                id="title"
+                onBlur={handleChange}
+                name="serviceTitle"
+                class="form-control mb-3"
+              />
 
-            <label for="textArea">Description</label>
-            <textarea
-              class="form-control mb-3"
-              id="textArea"
-              rows="3"
-              name="serviceDescription"
-              onBlur={handleChange}
-            />
+              <label for="textArea">Description</label>
+              <textarea
+                class="form-control mb-3"
+                id="textArea"
+                rows="3"
+                name="serviceDescription"
+                onBlur={handleChange}
+              />
 
-            <label for="price">Price</label>
-            <input
-              type="number"
-              id="price"
-              onBlur={handleChange}
-              name="servicePrice"
-              class="form-control mb-3"
-            />
-          </div>
-          <div className="col-md-6 mt-2">
-            <input
-              name="serviceFile"
-              id="upload"
-              onChange={handleFile}
-              type="file"
-              hidden
-              accept="image/*"
-            />
-            <label for="upload" className="upload-design">
-              {" "}
-              <img className="upload-img" src={uploadImg} alt="" /> Choose file
-            </label>{" "}
-            <br />
-            <input
-              type="submit"
-              value="Submit"
-              style={{ width: "120px" }}
-              className="btn btn-primary ml-4 mt-5"
-            />
-          </div>
-        </form>
-      </div>
-    </section>
+              <label for="price">Price</label>
+              <input
+                type="number"
+                id="price"
+                onBlur={handleChange}
+                name="servicePrice"
+                class="form-control mb-3"
+              />
+            </div>
+            <div className="col-md-6 mt-2">
+              <input
+                name="serviceFile"
+                id="upload"
+                onChange={handleFile}
+                type="file"
+                hidden
+                accept="image/*"
+              />
+              <label for="upload" className="upload-design">
+                {" "}
+                <img className="upload-img" src={uploadImg} alt="" /> Choose
+                file
+              </label>{" "}
+              <br />
+              <input
+                type="submit"
+                value="Submit"
+                style={{ width: "120px" }}
+                className="btn btn-primary ml-4 mt-5"
+              />
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
   );
 };
 

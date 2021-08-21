@@ -44,7 +44,7 @@ export const allService = [
 const Service = () => {
   const [services, setServices] = useContext(ServiceContext);
   useEffect(() => {
-    fetch("http://localhost:5000/getService")
+    fetch("https://sleepy-retreat-41418.herokuapp.com/getService")
       .then((res) => res.json())
       .then((result) => {
         setServices(result);

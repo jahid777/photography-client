@@ -11,7 +11,7 @@ const Sidebar = () => {
   return (
     <div className="mt-2 ml-5">
       {/* <img style={{ width: "150px" }} src={} alt="" /> */}
-      <h5>PHOTOGRAPHY</h5>
+      {/* <h5>PHOTOGRAPHY</h5> */}
       <ul className="mt-4 list-unstyled ml-4">
         <h5>
           <li>
