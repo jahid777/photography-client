@@ -1,0 +1,24 @@
+/* .header_img {
+  height: 700px;
+  width: 100% !important;
+  position: relative;
+  text-align: center;
+} */
+.carousel-indicators > li {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background-color: rgb(0, 0, 0);
+  /* opacity: 0.85 !important; */
+  font-weight: 800px;
+  margin-left: 10px;
+}
+.slider-img-height {
+  height: 520px;
+  width: 100%;
+}
+@media (max-width: 450px) {
+  .slider-img-height {
+    height: 400px;
+  }
+}

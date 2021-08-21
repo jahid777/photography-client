@@ -1,0 +1,32 @@
+.card-button {
+  display: flex;
+  justify-content: space-around !important;
+}
+.see_more {
+  display: flex;
+  width: 120px;
+  height: 35px;
+  background-color: #007bff;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 5px;
+}
+.see_more:hover {
+  text-decoration: none;
+  color: black;
+}
+.buy_now {
+  width: 120px;
+  display: flex;
+  height: 35px;
+  background-color: #007bff;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 5px;
+}
+.buy_now:hover {
+  text-decoration: none;
+  color: black;
+}
