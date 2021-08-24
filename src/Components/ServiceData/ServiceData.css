@@ -1,3 +1,6 @@
+.card {
+  height: 420px;
+}
 .card-button {
   display: flex;
   justify-content: space-around !important;

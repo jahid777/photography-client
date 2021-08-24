@@ -6,6 +6,7 @@ import icon2 from "../../Image/2.jpg";
 import icon3 from "../../Image/3.jpg";
 import ServiceData from "../ServiceData/ServiceData";
 import "./Service.css";
+import loading from "../../Image/loading.webp";
 
 export const allService = [
   {
@@ -43,22 +44,31 @@ export const allService = [
 // Editorial Photography Retouching Motion Product Video & GIF
 const Service = () => {
   const [services, setServices] = useContext(ServiceContext);
+  //akhne data asar sahte reload daoer projon o hoitase na abr dependency o add kora lagtesena..tar bodole map ar jaygay ? ayta disi..akhne abr dependency add korle bar bar api ta rerander ba call hoto
   useEffect(() => {
     fetch("https://sleepy-retreat-41418.herokuapp.com/getService")
       .then((res) => res.json())
       .then((result) => {
         setServices(result);
+        console.log(services, "there service");
       });
-  }, [setServices]);
-
-  // console.log(services, "here");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
       <h2 className="text-center mt-5 mb-3">Our Service</h2>
 
-      <div className="row card-deck">
-        {services.map((serviceData) => (
+      <div className="row row-cols-1 row-cols-md-3 container-fluid">
+        {services.length === 0 && (
+          <img
+            style={{ height: "350px", margin: "auto" }}
+            src={loading}
+            alt=""
+          />
+        )}
+
+        {services?.map((serviceData) => (
           <ServiceData key={serviceData._id} singleServiceData={serviceData}>
             {" "}
           </ServiceData>
